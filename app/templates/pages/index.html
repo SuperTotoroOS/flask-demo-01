@@ -1,0 +1,156 @@
+{% extends "layout.html" %}
+{% block head %}
+    {{ super() }}
+<!--     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">-->
+{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-1">
+                                <i class="pe-7s-cash"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text">$<span class="count">23569</span></div>
+                                    <div class="stat-heading">Revenue</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-2">
+                                <i class="pe-7s-cart"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">3435</span></div>
+                                    <div class="stat-heading">Sales</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <i class="pe-7s-browser"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">349</span></div>
+                                    <div class="stat-heading">Templates</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-4">
+                                <i class="pe-7s-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">2986</span></div>
+                                    <div class="stat-heading">Clients</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- <h4 class="box-title">Chandler</h4> -->
+                        <div class="calender-cont widget-calender">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div><!-- /.card -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title box-title">To Do List</h4>
+                        <div class="card-content">
+                            <div class="todo-list">
+                                <div class="tdl-holder">
+                                    <div class="tdl-content">
+                                        <ul>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox"><i class="check-box"></i><span>Conveniently fabricate interactive technology for ....</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox"><i class="check-box"></i><span>Creating component page</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked><i class="check-box"></i><span>Follow back those who follow you</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked><i class="check-box"></i><span>Design One page theme</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked><i class="check-box"></i><span>Creating component page</span>
+                                                    <a href='#' class="fa fa-times"></a>
+                                                    <a href='#' class="fa fa-pencil"></a>
+                                                    <a href='#' class="fa fa-check"></a>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> <!-- /.todo-list -->
+                        </div>
+                    </div> <!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
