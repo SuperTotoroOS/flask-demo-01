@@ -3,15 +3,16 @@ Created by Ricky Yang on 11/10/19
 @File: client.py
 @Description:
 """
-from wtforms import Form, StringField, IntegerField
+from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, Email, Regexp, ValidationError, length
 
 from app.lib.enums import ClientTypeEnum
 from app.models.user import User
+from app.validators.base import BaseForm
 
 
-class ClientForm(Form):
-    account = StringField(validators=[DataRequired(), length(min=5, max=32)])
+class ClientForm(BaseForm):
+    account = StringField(validators=[DataRequired('account are not allowed to empty'), length(min=5, max=32)])
     secret = StringField()
     type = IntegerField(validators=[DataRequired()])
 

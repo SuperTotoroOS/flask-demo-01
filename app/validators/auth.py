@@ -1,10 +1,11 @@
-from wtforms import Form, StringField, IntegerField, PasswordField
-from wtforms.validators import EqualTo, Length, NumberRange, DataRequired, Email, ValidationError
+from wtforms import Form, StringField, PasswordField
+from wtforms.validators import EqualTo, Length, DataRequired, Email, ValidationError
 
 from app.models.user import User
+from app.validators.base import BaseForm
 
 
-class RegisterForm(Form):
+class RegisterForm(BaseForm):
     email = StringField(validators=[DataRequired(), Length(8, 64),
                                     Email(message='电子邮箱不符合规范')])
 
