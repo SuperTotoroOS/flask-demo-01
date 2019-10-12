@@ -10,7 +10,7 @@ from flask_login import login_user, login_required, current_user, logout_user
 
 from app.models.base import db
 from app.models.user import User
-from app.validation.auth import RegisterForm, LoginForm, EmailForm, ChangePasswordForm
+from app.validators.auth import RegisterForm, LoginForm, EmailForm, ChangePasswordForm
 from . import web
 
 

@@ -28,7 +28,7 @@ nbproject
 *.sublime-workspace
 .idea
 
-# grunt-html-validation
+# grunt-html-validators
 validation-status.json
 validation-report.json
 

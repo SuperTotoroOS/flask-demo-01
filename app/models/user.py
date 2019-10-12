@@ -23,10 +23,7 @@ class User(UserMixin, Base):
     email = Column(String(64), unique=True, nullable=False)
     address = Column(String(256))
     confirmed = Column(Boolean, default=False)
-    role = Column(SmallInteger, default=2)  # 用户权限；0 超级管理员 1 管理员 2 普通用户
-
-    wx_open_id = Column(String(64))
-    wx_name = Column(String(32))
+    auth = Column(SmallInteger, default=1)  # 用户权限；0 超级管理员 2 管理员 1 普通用户
 
     facebook = Column(String(64))
     twitter = Column(String(64))
@@ -55,6 +52,16 @@ class User(UserMixin, Base):
             user = User.query.get(uid)
             user.password = new_password
         return True
+
+    @staticmethod
+    def register_by_email(nickname, account, secret):
+        with db.auto_commit():
+            user = User()
+            user.nickname = nickname
+            user.email = account
+            user.password = secret
+            db.session.add(user)
+
 
     def generate_token(self, expiration=600):
         s = TimedJSONWebSignatureSerializer(current_app.config['SECRET_KEY'], expiration)

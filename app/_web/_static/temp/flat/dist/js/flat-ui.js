@@ -10280,7 +10280,7 @@ the specific language governing permissions and limitations under the Apache Lic
             this.opts.element.trigger(details);
             this.opts.element.data("select2-change-triggered", false);
 
-            // some validation frameworks ignore the change event and listen instead to keyup, click for selects
+            // some validators frameworks ignore the change event and listen instead to keyup, click for selects
             // so here we trigger the click event manually
             this.opts.element.click();
 
