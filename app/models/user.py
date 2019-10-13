@@ -8,9 +8,10 @@ from flask import current_app
 from flask_login import UserMixin
 from sqlalchemy import Column, String, Boolean, SmallInteger, Integer
 from werkzeug.security import generate_password_hash, check_password_hash
-from itsdangerous import TimedJSONWebSignatureSerializer
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from app import login_manager
+from app.lib.error_code import NotFound, AuthFailed
 from app.models.base import Base, db
 
 
@@ -37,11 +38,13 @@ class User(UserMixin, Base):
         self._password = generate_password_hash(raw)
 
     def check_password(self, raw):
+        if not self._password:
+            return False
         return check_password_hash(self._password, raw)
 
     @staticmethod
     def reset_password(token, new_password):
-        s = TimedJSONWebSignatureSerializer(current_app.config['SECRET_KEY'])
+        s = Serializer(current_app.config['SECRET_KEY'])
         try:
             data = s.loads(token.encode('utf-8'))
         except:
@@ -62,16 +65,28 @@ class User(UserMixin, Base):
             user.password = secret
             db.session.add(user)
 
+    @staticmethod
+    def verify(email, password):
+        user = User.query.filter_by(email=email).first_or_404()
+        if not user.check_password(password):
+            raise AuthFailed()
+        return {'uid': user.id}
 
     def generate_token(self, expiration=600):
-        s = TimedJSONWebSignatureSerializer(current_app.config['SECRET_KEY'], expiration)
+        s = Serializer(current_app.config['SECRET_KEY'], expiration)
         return s.dumps({'id': self.id}).decode('utf-8')
+
+    def generate_auth_token(uid, ac_type, scope=None, expiration=7200):
+        s = Serializer(current_app.config['SECRET_KEY'], expiration)
+        return s.dumps({
+            'uid': uid,
+            'type': ac_type.value
+        }).decode('utf-8')
 
     def summary(self):
         return dict(
             nickname=self.nickname,
             username=self.username,
-
         )
 
 

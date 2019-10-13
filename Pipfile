@@ -12,6 +12,7 @@ flask-sqlalchemy = "*"
 wtforms = "*"
 cymysql = "*"
 pycrypto = "*"
+flask-httpauth = "*"
 
 [requires]
 python_version = "3.7"
