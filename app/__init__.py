@@ -3,10 +3,32 @@ Created by Ricky Yang on 5/10/19
 @File: __init__.py
 @Description: 项目入口文件
 """
-from flask import Flask
 from flask_login import LoginManager
 
+from .app import Flask
+
 login_manager = LoginManager()
+
+
+def register_blueprint(app):
+    from app.web import web
+    app.register_blueprint(web)
+
+    from app.api.v1 import create_blueprint_v1
+    app.register_blueprint(create_blueprint_v1(), url_prefix='/v1')
+
+
+def register_database(app):
+    from app.models.base import db
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
+
+
+def register_flask_login(app):
+    login_manager.init_app(app)
+    login_manager.login_view = 'web.login'
+    login_manager.login_message = 'Please Login First'
 
 
 def create_app():
@@ -29,24 +51,10 @@ def create_app():
     return app
 
 
-def register_blueprint(app):
-    from app.web import web
-    app.register_blueprint(web)
-
-    from app.api.v1 import create_blueprint_v1
-    app.register_blueprint(create_blueprint_v1(), url_prefix='/v1')
 
 
-def register_database(app):
-    from app.models.base import db
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
 
 
-def register_flask_login(app):
-    login_manager.init_app(app)
-    login_manager.login_view = 'web.login'
-    login_manager.login_message = 'Please Login First'
+
 
 

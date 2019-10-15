@@ -9,6 +9,7 @@ from app import create_app
 from app.lib.error_code import ServerException
 from app.lib.errors import APIException
 
+
 app = create_app()
 
 # 全局异常处理

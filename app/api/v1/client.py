@@ -4,7 +4,7 @@ Created by Ricky Yang on 11/10/19
 @Description: 客户端注册
 """
 from app.lib.enums import ClientTypeEnum
-from app.lib.error_code import Success
+from app.lib.error_code import CreateSuccess
 from app.lib.redprint import Redprint
 from app.models.user import User
 from app.validators.client import ClientForm, UserEmailForm
@@ -19,7 +19,7 @@ def create_client():
         ClientTypeEnum.USER_EMAIL: __register_user_by_email
     }
     promise[form.type.data]()
-    return Success()
+    return CreateSuccess()
 
 
 @api.route('', methods=['PUT'])

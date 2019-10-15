@@ -11,7 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from app import login_manager
-from app.lib.error_code import NotFound, AuthFailed
+from app.lib.error_code import AuthFailed
 from app.models.base import Base, db
 
 
@@ -28,6 +28,9 @@ class User(UserMixin, Base):
 
     facebook = Column(String(64))
     twitter = Column(String(64))
+
+    def keys(self):
+        return ['id', 'email', 'nickname', 'auth']
 
     @property
     def password(self):
