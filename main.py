@@ -12,7 +12,7 @@ from app.lib.errors import APIException
 
 app = create_app()
 
-# 全局异常处理
+
 @app.errorhandler(Exception)
 def framework_error(e):
     if isinstance(e, APIException):

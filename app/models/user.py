@@ -73,7 +73,8 @@ class User(UserMixin, Base):
         user = User.query.filter_by(email=email).first_or_404()
         if not user.check_password(password):
             raise AuthFailed()
-        return {'uid': user.id}
+        scope = 'AdminScope' if user.auth == 2 else 'UserScope'
+        return {'uid': user.id, 'scope': scope}
 
     def generate_token(self, expiration=600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)

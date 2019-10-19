@@ -1,15 +1,16 @@
 """
 Created by Ricky Yang on 13/10/19
 @File: token_auth.py
-@Description:
+@Description: 验证密码
 """
 from collections import namedtuple
 
-from flask import current_app, g
+from flask import current_app, g, request
 from flask_httpauth import HTTPBasicAuth
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, SignatureExpired, BadSignature
 
-from app.lib.error_code import AuthFailed
+from app.lib.error_code import AuthFailed, Forbidden
+from app.lib.scope import is_in_scope
 
 auth = HTTPBasicAuth()
 User = namedtuple('User', ['uid', 'ac_type', 'scope'])
@@ -36,4 +37,7 @@ def verify_auth_token(token):
     uid = data['uid']
     ac_type = data['type']
     scope = data['scope']
+    allow = is_in_scope(scope, request.endpoint)
+    if not allow:
+        raise Forbidden()
     return User(uid, ac_type, scope)

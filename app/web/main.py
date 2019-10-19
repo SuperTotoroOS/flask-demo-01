@@ -1,7 +1,7 @@
 """
 Created by Ricky Yang on 7/10/19
 @File: main.py
-@Description:
+@Description: 用户操作
 """
 from flask import render_template
 from flask_login import login_required, current_user

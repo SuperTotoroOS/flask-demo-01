@@ -1,9 +1,8 @@
 """
 Created by Ricky Yang on 8/10/19
 @File: auth.py
-@Description:
+@Description: 注册登录
 """
-from logging import Logger
 
 from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_user, login_required, current_user, logout_user
