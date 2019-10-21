@@ -7,7 +7,7 @@ Created by Ricky Yang on 13/10/19
 """
 from flask import current_app, jsonify
 
-from app.lib.error_code import AuthFailed
+from app.lib.error_code_api import AuthFailed
 from app.lib.module import Module
 from app.models.user import User
 from app.validators.client import ClientForm, TokenForm

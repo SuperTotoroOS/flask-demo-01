@@ -1,6 +1,6 @@
 """
 Created by Ricky Yang on 12/10/19
-@File: errors.py
+@File: customize_api_exception.py
 @Description: 自定义异常，
 """
 from flask import request, json

@@ -11,7 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from app import login_manager
-from app.lib.error_code import AuthFailed
+from app.lib.error_code_api import AuthFailed
 from app.models.base import Base, db
 
 

@@ -6,7 +6,7 @@ Created by Ricky Yang on 12/10/19
 from flask import request
 from wtforms import Form
 
-from app.lib.error_code import ParameterException
+from app.lib.error_code_api import ParameterException
 
 
 class BaseForm(Form):

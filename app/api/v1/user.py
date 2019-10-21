@@ -11,7 +11,7 @@ Created by Ricky Yang on 11/10/19
 """
 from flask import jsonify, g
 
-from app.lib.error_code import DeleteSuccess
+from app.lib.error_code_api import DeleteSuccess
 from app.models.base import db
 from app.lib.module import Module
 from app.lib.token_auth import auth

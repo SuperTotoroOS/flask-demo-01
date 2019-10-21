@@ -5,7 +5,7 @@ Created by Ricky Yang on 11/10/19
     create_client(/v1/client, POST, account&secret&type): 创建客户端
 """
 from app.lib.enums import ClientTypeEnum
-from app.lib.error_code import CreateSuccess
+from app.lib.error_code_api import CreateSuccess
 from app.lib.module import Module
 from app.models.user import User
 from app.validators.client import ClientForm, UserEmailForm
