@@ -36,8 +36,9 @@ class AdminScope(Scope):
     def __init__(self):
         self + UserScope()
 
+
 class SuperScope(Scope):
-    allow_api = []
+    # allow_api = []
     allow_module = ['v1.user']
 
     def __init__(self):

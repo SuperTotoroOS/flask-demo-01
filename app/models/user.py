@@ -12,6 +12,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from app import login_manager
 from app.lib.error_code_api import AuthFailed
+from app.lib.error_code_http import NotFound
 from app.models.base import Base, db
 
 
@@ -24,7 +25,7 @@ class User(UserMixin, Base):
     email = Column(String(64), unique=True, nullable=False)
     address = Column(String(256))
     confirmed = Column(Boolean, default=False)
-    auth = Column(SmallInteger, default=1)  # 用户权限；0 超级管理员 2 管理员 1 普通用户
+    auth = Column(SmallInteger, default=2)  # 用户权限；0 超级管理员 1 管理员 2 普通用户
 
     facebook = Column(String(64))
     twitter = Column(String(64))
@@ -56,7 +57,10 @@ class User(UserMixin, Base):
         uid = data.get('id')
         with db.auto_commit():
             user = User.query.get(uid)
-            user.password = new_password
+            if user:
+                user.password = new_password
+            else:
+                raise NotFound()
         return True
 
     @staticmethod
@@ -73,7 +77,14 @@ class User(UserMixin, Base):
         user = User.query.filter_by(email=email).first_or_404()
         if not user.check_password(password):
             raise AuthFailed()
-        scope = 'AdminScope' if user.auth == 2 else 'UserScope'
+        if user.auth == 0:
+            scope = 'SuperScope'
+        elif user.auth == 1:
+            scope = 'AdminScope'
+        elif user.auth == 2:
+            scope = 'UserScope'
+        else:
+            raise AuthFailed('quth type error')
         return {'uid': user.id, 'scope': scope}
 
     def generate_token(self, expiration=600):

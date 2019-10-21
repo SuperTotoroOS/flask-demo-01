@@ -13,19 +13,19 @@
                         <div class="form-group">
                             <label>Nickname</label>
                             <input class="form-control" id="nickname" name="nickname"
-                                   type="text" placeholder="Please Input Nickname"
+                                   type="text" placeholder="Please set your nickname"
                                    value="{{ form.data['nickname'] | default('', true)}}">
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
                             <input class="form-control" id="email" name="email"
-                                   type="email"  placeholder="Please Input Email"
+                                   type="email"  placeholder="Please set your email"
                                    value="{{ form.data['email'] | default('', true) }}">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
                             <input class="form-control" id="password" name="password"
-                                   type="password"  placeholder="Please Input Password">
+                                   type="password"  placeholder="Please set your password">
                         </div>
                         <button class="btn btn-primary btn-flat m-b-30 m-t-30" id="btn-submit"
                                 type="submit" >Register</button>

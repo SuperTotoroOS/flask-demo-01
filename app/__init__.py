@@ -4,10 +4,12 @@ Created by Ricky Yang on 5/10/19
 @Description: 项目入口文件
 """
 from flask_login import LoginManager
+from flask_mail import Mail
 
 from .app import Flask
 
 login_manager = LoginManager()
+mail = Mail()
 
 
 def register_blueprint(app):
@@ -31,6 +33,10 @@ def register_flask_login(app):
     login_manager.login_message = 'Please Login First'
 
 
+# def register_flask_mail(app):
+#     mail.init_app(app)
+
+
 def create_app():
     # 实例化Flask对象
     app = Flask(__name__)
@@ -47,6 +53,9 @@ def create_app():
 
     # 加载flask_login
     register_flask_login(app)
+
+    # 加载flask_mail
+    mail.init_app(app)
 
     return app
 

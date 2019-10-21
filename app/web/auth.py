@@ -6,11 +6,19 @@ Created by Ricky Yang on 8/10/19
 
 from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_user, login_required, current_user, logout_user
+from app.lib.email import send_mail
 
 from app.models.base import db
 from app.models.user import User
-from app.validators.auth import RegisterForm, LoginForm, EmailForm, ChangePasswordForm
+from app.validators.auth import RegisterForm, LoginForm, EmailForm, ChangePasswordForm, ResetPasswordForm
 from . import web
+
+
+@web.route('/')
+@login_required
+def index():
+    user = current_user
+    return render_template('pages/index.html', user=user)
 
 
 @web.route('/register', methods=['GET', 'POST'])
@@ -54,7 +62,24 @@ def forget_password_request():
         if form.validate():
             account_email = form.email.data
             user = User.query.filter_by(email=account_email).first_or_404()
-    return render_template('pages/forget_password_request.html', form=form)
+            send_mail(form.email.data, 'Reset your password', 'email/reset_password.html',
+                      user=user, token=user.generate_token())
+            flash('Please check in your Email:' + account_email)
+    return render_template('pages/forget-password-request.html', form=form)
+
+
+@web.route('/reset/password/<token>', methods=['GET', 'POST'])
+def forget_password(token):
+    form = ResetPasswordForm(request.form)
+    if request.method == 'POST' and form.validate():
+        success = User.reset_password(token, form.password1.data)
+        print(success)
+        if success:
+            flash('Your password has been reset')
+            return redirect(url_for('web.login'))
+        else:
+            flash('We can not reset your password')
+    return render_template('pages/forget-password.html')
 
 
 @web.route('/change/password', methods=['GET', 'POST'])
@@ -67,6 +92,9 @@ def change_password():
         flash('Password has been updated')
         return redirect(url_for('web.personal'))
     return render_template('pages/change_password.html', form=form)
+
+
+
 
 
 

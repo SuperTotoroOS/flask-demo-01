@@ -10,14 +10,12 @@ class Module:
         self.name = name
         self.mound = []
 
-    # 把视图函数注册到蓝图上
     def route(self, rule, **options):
         def decorator(f):
             self.mound.append((f, rule, options))
             return f
         return decorator
 
-    # 注册蓝图
     def register(self, bp, url_prefix=None):
         if url_prefix is None:
             url_prefix = '/' + self.name
