@@ -1,6 +1,0 @@
-cymysql
-flask
-flask-login
-flask-sqlalchemy
-pycrypto
-wtforms

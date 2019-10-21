@@ -2,10 +2,9 @@ from wtforms import Form, StringField, PasswordField
 from wtforms.validators import EqualTo, Length, DataRequired, Email, ValidationError
 
 from app.models.user import User
-from app.validators.base import BaseForm
 
 
-class RegisterForm(BaseForm):
+class RegisterForm(Form):
     email = StringField(validators=[
         DataRequired(), Length(8, 64), Email(message='Invalid email')])
 
