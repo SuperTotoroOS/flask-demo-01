@@ -7,4 +7,7 @@ web = Blueprint('web', __name__)
 def not_found(e):
     return render_template('pages/404.html'), 404
 
-from app.web import auth, main
+
+from app.web import auth
+from app.web import main
+
