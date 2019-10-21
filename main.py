@@ -5,23 +5,27 @@ Created by Ricky Yang on 5/10/19
 """
 from http.client import HTTPException
 
+from flask import render_template
+
 from app import create_app
-from app.lib.error_code import ServerException
-from app.lib.errors import APIException
+from app.lib.error_code_api import ServerException
+from app.lib.customize_api_exception import APIException
 
 
 app = create_app()
 
-# 全局异常处理
+
 @app.errorhandler(Exception)
 def framework_error(e):
+    if isinstance(e, HTTPException):
+        error = {
+            'code': e.code,
+            'msg': e.description,
+            'error_code': 1007,
+        }
+        return render_template('pages/404.html', error=error)
     if isinstance(e, APIException):
         return e
-    if isinstance(e, HTTPException):
-        code = e.code
-        msg = e.description
-        error_code = 1007
-        return APIException(msg, code, error_code)
     else:
         if not app.config['DEBUG']:
             return ServerException()
@@ -30,4 +34,4 @@ def framework_error(e):
 
 
 if __name__ == '__main__':
-    app.run(host=app.config['HOST'], port=app.config['PORT'], debug=app.config['DEBUG'], threaded=True)
+    app.run(host='0.0.0.0', port=81, debug=True, threaded=True)

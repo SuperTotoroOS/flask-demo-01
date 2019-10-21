@@ -1,17 +1,19 @@
 """
 Created by Ricky Yang on 12/10/19
 @File: base.py
-@Description:
+@Description: 自定义表单基类
 """
 from flask import request
 from wtforms import Form
 
-from app.lib.error_code import ParameterException
+from app.lib.error_code_api import ParameterException
 
 
 class BaseForm(Form):
     def __init__(self):
-        super(BaseForm, self).__init__(data=request.json)
+        data = request.get_json(silent=True)
+        args = request.args.to_dict()
+        super(BaseForm, self).__init__(data=data, **args)
 
     def validate_for_api(self):
         valid = super(BaseForm, self).validate()
