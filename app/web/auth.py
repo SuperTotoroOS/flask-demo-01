@@ -64,7 +64,7 @@ def forget_password_request():
             user = User.query.filter_by(email=account_email).first_or_404()
             send_mail(form.email.data, 'Reset your password', 'email/reset_password.html',
                       user=user, token=user.generate_token())
-            flash('Please check in your Email:' + account_email)
+            flash('Please check in your Email: ' + account_email)
     return render_template('pages/forget-password-request.html', form=form)
 
 
@@ -73,7 +73,6 @@ def forget_password(token):
     form = ResetPasswordForm(request.form)
     if request.method == 'POST' and form.validate():
         success = User.reset_password(token, form.password1.data)
-        print(success)
         if success:
             flash('Your password has been reset')
             return redirect(url_for('web.login'))
