@@ -1,11 +1,11 @@
 """
 Created by Ricky Yang on 11/10/19
-@File: redprint.py
+@File: module.py
 @Description: 自定义蓝图
 """
 
 
-class Redprint:
+class Module:
     def __init__(self, name):
         self.name = name
         self.mound = []
@@ -23,7 +23,7 @@ class Redprint:
             url_prefix = '/' + self.name
 
         for f, rule, options in self.mound:
-            endpoint = options.pop('endpoint', f.__name__)
+            endpoint = self.name + '+' + options.pop('endpoint', f.__name__)
             bp.add_url_rule(url_prefix + rule, endpoint, f, **options)
             pass
         pass

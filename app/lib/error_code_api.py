@@ -1,9 +1,9 @@
 """
 Created by Ricky Yang on 12/10/19
-@File: error_code.py
-@Description:
+@File: error_code_api.py
+@Description: 状态码
 """
-from app.lib.errors import APIException
+from app.lib.customize_api_exception import APIException
 
 
 class Success(APIException):
@@ -45,7 +45,15 @@ class NotFound(APIException):
     error_code = 1001
 
 
+# 授权失败，账号密码出错
 class AuthFailed(APIException):
     code = 401
+    msg = 'authorization failed'
+    error_code = 1005
+
+
+# 权限不够
+class Forbidden(APIException):
+    code = 403
     msg = 'authorization failed'
     error_code = 1005

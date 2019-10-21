@@ -1,7 +1,7 @@
 """
 Created by Ricky Yang on 11/10/19
 @File: client.py
-@Description:
+@Description: 客户端验证
 """
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, Email, Regexp, ValidationError, length
@@ -22,6 +22,10 @@ class ClientForm(BaseForm):
         except ValueError as e:
             raise e
         self.type.data = client
+
+
+class TokenForm(BaseForm):
+    token = StringField(validators=[DataRequired('token are not allowed to empty')])
 
 
 class UserEmailForm(ClientForm):

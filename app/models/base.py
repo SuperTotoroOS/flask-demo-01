@@ -9,7 +9,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy, BaseQuery
 from sqlalchemy import Column, Integer, SmallInteger
 
-from app.lib.error_code import NotFound
+from app.lib.error_code_api import NotFound
 
 
 class SQLAlchemy(_SQLAlchemy):
@@ -60,6 +60,19 @@ class Base(db.Model):
 
     def __getitem__(self, item):
         return getattr(self, item)
+
+    def keys(self):
+        return self.fields
+
+    def hide(self, *keys):
+        for key in keys:
+            self.fields.remove(key)
+            return self
+
+    def append(self, *keys):
+        for key in keys:
+            self.fields.append(key)
+        return self
 
     @property
     def create_datetime(self):
