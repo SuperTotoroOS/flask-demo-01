@@ -6,7 +6,7 @@ Created by Ricky Yang on 8/10/19
 
 from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_user, login_required, current_user, logout_user
-from app.lib.email import send_mail
+from app.libs.email import send_mail
 
 from app.models.base import db
 from app.models.user import User

@@ -7,11 +7,11 @@ Created by Ricky Yang on 13/10/19
 """
 from flask import current_app, jsonify
 
-from app.lib.error_code_api import AuthFailed
-from app.lib.module import Module
+from app.libs.error_code_api import AuthFailed
+from app.libs.module import Module
 from app.models.user import User
 from app.validators.client import ClientForm, TokenForm
-from app.lib.enums import ClientTypeEnum
+from app.libs.enums import ClientTypeEnum
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, SignatureExpired, BadSignature
 
 api = Module('token')

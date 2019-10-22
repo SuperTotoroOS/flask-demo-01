@@ -13,6 +13,7 @@ wtforms = "*"
 flask-httpauth = "*"
 cymysql = "*"
 flask-mail = "*"
+pycrypto = "*"
 
 [requires]
 python_version = "3.7"

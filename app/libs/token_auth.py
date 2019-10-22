@@ -9,8 +9,8 @@ from flask import current_app, g, request
 from flask_httpauth import HTTPBasicAuth
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, SignatureExpired, BadSignature
 
-from app.lib.error_code_api import AuthFailed, Forbidden
-from app.lib.scope import is_in_scope
+from app.libs.error_code_api import AuthFailed, Forbidden
+from app.libs.scope import is_in_scope
 
 auth = HTTPBasicAuth()
 User = namedtuple('User', ['uid', 'ac_type', 'scope'])

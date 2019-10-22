@@ -5,3 +5,4 @@ flask-httpauth
 flask-mail
 wtforms
 cymysql
+pycrypto

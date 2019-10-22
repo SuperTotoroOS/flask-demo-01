@@ -3,7 +3,7 @@ Created by Ricky Yang on 12/10/19
 @File: error_code_api.py
 @Description: 状态码
 """
-from app.lib.customize_api_exception import APIException
+from app.libs.customize_api_exception import APIException
 
 
 class Success(APIException):

@@ -6,7 +6,7 @@ Created by Ricky Yang on 11/10/19
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, Email, Regexp, ValidationError, length
 
-from app.lib.enums import ClientTypeEnum
+from app.libs.enums import ClientTypeEnum
 from app.models.user import User
 from app.validators.base import BaseForm
 

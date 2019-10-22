@@ -9,7 +9,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy, BaseQuery
 from sqlalchemy import Column, Integer, SmallInteger
 
-from app.lib.error_code_api import NotFound
+from app.libs.error_code_api import NotFound
 
 
 class SQLAlchemy(_SQLAlchemy):

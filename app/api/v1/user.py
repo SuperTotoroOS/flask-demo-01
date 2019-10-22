@@ -11,10 +11,10 @@ Created by Ricky Yang on 11/10/19
 """
 from flask import jsonify, g
 
-from app.lib.error_code_api import DeleteSuccess
+from app.libs.error_code_api import DeleteSuccess
 from app.models.base import db
-from app.lib.module import Module
-from app.lib.token_auth import auth
+from app.libs.module import Module
+from app.libs.token_auth import auth
 from app.models.user import User
 
 api = Module('user')

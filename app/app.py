@@ -6,7 +6,7 @@ Created by Ricky Yang on 15/10/19
 from datetime import date
 from flask import Flask as _Flask
 from flask.json import JSONEncoder as _JSONEncoder
-from app.lib.error_code_api import ServerException
+from app.libs.error_code_api import ServerException
 
 
 class JSONEncoder(_JSONEncoder):

@@ -8,8 +8,8 @@ from http.client import HTTPException
 from flask import render_template
 
 from app import create_app
-from app.lib.error_code_api import ServerException
-from app.lib.customize_api_exception import APIException
+from app.libs.error_code_api import ServerException
+from app.libs.customize_api_exception import APIException
 
 
 app = create_app()
