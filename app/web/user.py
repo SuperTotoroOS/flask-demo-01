@@ -11,6 +11,6 @@ from . import web
 
 @web.route('/user')
 @login_required
-def get_user():
+def user_details():
     user = current_user
     return render_template('pages/user-details.html', user=user)

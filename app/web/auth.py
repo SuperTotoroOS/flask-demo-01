@@ -86,10 +86,14 @@ def forget_password(token):
 def change_password():
     form = ChangePasswordForm(request.form)
     if request.method == 'POST' and form.validate():
-        with db.auto_commit():
-            current_user.password = form.new_password1.data
-        flash('Password has been updated')
-        return redirect(url_for('web.personal'))
+        user = current_user
+        if user and user.check_password(form.old_password.data):
+            with db.auto_commit():
+                user.password = form.new_password1.data
+                flash('Password has been updated')
+                return redirect(url_for('web.user_details'))
+        else:
+            flash('Please input correct password')
     return render_template('pages/change_password.html', form=form)
 
 

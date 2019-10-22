@@ -115,7 +115,7 @@
                             <img class="user-avatar rounded-circle" src="{{user.avatar | default('../../static/images/avatar/6.jpg', true)}}" alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="{{ url_for('web.get_user') }}"><i class="fa fa-user"></i>My Profile</a>
+                            <a class="nav-link" href="{{ url_for('web.user_details') }}"><i class="fa fa-user"></i>My Profile</a>
                             <a class="nav-link" href="{{ url_for('web.logout') }}"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
