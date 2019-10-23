@@ -1,6 +1,6 @@
 # Service
 HOST = '0.0.0.0'
-PORT = 82
+PORT = 5000
 DEBUG = True
 
 # Database
