@@ -1,7 +1,7 @@
 # Service
 HOST = '0.0.0.0'
 PORT = 5000
-DEBUG = True
+DEBUG = False
 
 # Database
 SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://root:123456@13.236.116.99:3306/workspace'
