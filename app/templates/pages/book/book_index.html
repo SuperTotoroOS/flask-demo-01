@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Search Book</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Index</a></li>
+                                <li class="active">Search Book</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Search Book</strong>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <h3 class="text-center">Search Book</h3>
+                                    </div>
+                                    <hr>
+                                    <form action="{{ url_for('web.search') }}" method="get">
+                                        <div class="form-group">
+                                            <input name="query" type="text" class="form-control" placeholder="ISBN、Book name">
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="btn btn-lg btn-info btn-block">
+                                                <i class="fa fa-search fa-lg"></i>&nbsp;
+                                                <span>Search…</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height: 300px"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{% endblock %}

@@ -3,6 +3,8 @@ flask-login
 flask-sqlalchemy
 flask-httpauth
 flask-mail
+sqlalchemy
 wtforms
 cymysql
 pycrypto
+requests

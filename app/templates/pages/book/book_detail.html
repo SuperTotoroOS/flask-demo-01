@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='3rd/ui/remodal.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='3rd/ui/remodal-default-theme.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css')}}">
+{% endblock %}
+{% block content %}
+    {{ super() }}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Search Book</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Index</a></li>
+                                <li><a href="#">Search Book</a></li>
+                                <li class="active"><a href="#">{{ book.title }}</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row" style="height: 300px">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title" v-if="headerText">{{ book.title }}</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row book-container">
+                            <div class="col-md-2">
+                                <img class="book-img" src="{{ book.image }}"/>
+                            </div>
+                            <div class="col-md-4 flex-vertical">
+                                <div class="description-font-margin">
+                    <div>
+                        <span>作者:</span>
+                        <span>{{ book.author }}</span>
+                    </div>
+                    <div>
+                        <span>出版社:</span>
+                        <span>{{ book.publisher }}</span>
+                    </div>
+                    <div>
+                        <span>出版年：</span>
+                        <span>{{ book.pubdate }}</span>
+                    </div>
+                    <div>
+                        <span>页数：</span>
+                        <span>{{ book.pages }}</span>
+                    </div>
+                    <div>
+                        <span>定价：</span>
+                        <span>{{ book.price }}</span>
+                    </div>
+                    <div>
+                        <span>精装：</span>
+                        <span>{{ book.binding }}</span>
+                    </div>
+                    <div>
+                        <span>ISBN：</span>
+                        <span id="isbn">{{ book.isbn }}</span>
+                    </div>
+                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2%;" class="row">
+                            <div class="col-md-2"><strong>SUMMARY</strong></div>
+                        </div>
+                        <div style="margin-top: 1%;" class="row">
+                            <div class="col-md-11">
+                                <p class="description-font">{{ book.summary | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='3rd/remodal.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/book-detail.js') }}"></script>
+{% endblock %}
